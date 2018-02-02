@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package api;
+
+service ImageProcessor {
+    rpc GetPaths(UploadStatus) returns (NewImagePath) {}
+    rpc Upload(stream Chunk) returns (UploadStatus) {}
+    rpc SendFileName(FileName) returns (FileName) {}
+}
+
+message NewImagePath {
+    string oldPath = 1;
+    string newPath = 2;
+}
+
+message Chunk {
+    bytes Content = 1;
+    string FileName = 2;
+}
+
+message FileName {
+    string name = 1;
+}
+
+enum UploadStatusCode {
+    Unknown = 0;
+    Ok = 1;
+    Failed = 2;
+}
+
+message UploadStatus {
+    string Message = 1;
+    UploadStatusCode Code = 2;
+}

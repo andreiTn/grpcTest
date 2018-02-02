@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            {{ if .Flash }}
+                <div class="alert alert-info">{{ .Flash }}</div>
+            {{ end }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Original</h3>
+            <img src="/images/{{ .Info.OldPath }}" alt="" class="img-responsive" />
+        </div>
+        <div class="col-md-6">
+            <h3>Edited</h3>
+            <img src="/images/{{ .Info.NewPath }}" alt="" class="img-responsive" />
+        </div>
+        <div class="col-md-12">
+            <hr />
+            <a href="/" class="btn btn-default">Home</a>
+        </div>
+    </div>
+</div>
+
+<script src="/vendor/jquery/dist/jquery.min.js"></script>
+<script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/assets/js/app.js"></script>
+</body>
+</html>
