@@ -1,0 +1,6 @@
+{
+  "TemplateLayoutPath": "templates/layouts/",
+  "TemplateIncludePath": "templates/",
+  "Host": "localhost",
+  "Port": "8080"
+}

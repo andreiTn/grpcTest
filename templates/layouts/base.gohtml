@@ -1,0 +1,54 @@
+{{ define "base" }}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{block "title" .}} {{end}}</title>
+
+    {{/* Common css files edit /templates/layouts/css.gohtml if you need to change something here */}}
+    {{ block "basecss" . }} {{ end }}
+
+    {{/* To be able to add other stylesheets */}}
+    {{block "css" .}} {{end}}
+</head>
+<body>
+{{/* Main Navbar */}}
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">FileUploader</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/upload-file">Upload Files</a></li>
+            <li><a href="/view">View Images</a></li>
+        </ul>
+    </div>
+</nav>
+
+{{/* Flash messages */}}
+{{ if .Flash }}
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="alert alert-info">{{ .Flash }}</div>
+    </div>
+</div>
+{{ end }}
+
+{{/* Page content */}}
+<div class="container">
+    {{template "content" .}}
+</div>
+
+
+{{/* Common js files edit /templates/layouts/js.gohtml if you need to change something here */}}
+{{ block "basejs" . }} {{ end }}
+
+{{/* You can add more js */}}
+{{block "js" .}} {{end}}
+</body>
+</html>
+{{ end }}

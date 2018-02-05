@@ -1,9 +1,10 @@
 package flashes
 
 import (
+	"encoding/base64"
+	"fmt"
 	"net/http"
 	"time"
-	"encoding/base64"
 )
 
 func SetFlash(w http.ResponseWriter, name string, value []byte) {
@@ -11,25 +12,26 @@ func SetFlash(w http.ResponseWriter, name string, value []byte) {
 	http.SetCookie(w, c)
 }
 
-func GetFlash(w http.ResponseWriter, r *http.Request, name string) ([]byte, error) {
+func GetFlash(w http.ResponseWriter, r *http.Request, name string) (string, error) {
 	c, err := r.Cookie(name)
 	if err != nil {
 		switch err {
 		case http.ErrNoCookie:
-			return nil, nil
+			return "", nil
 		default:
-			return nil, err
+			return "", err
 		}
 	}
 
 	value, err := decode(c.Value)
 	if err != nil {
-		return nil, err
+		return "", err
 	}
+	stringFlash := fmt.Sprintf("%s", value)
 
-	dc := &http.Cookie{Name:name, MaxAge:-1, Expires:time.Unix(1, 0)}
+	dc := &http.Cookie{Name: name, MaxAge: -1, Expires: time.Unix(1, 0)}
 	http.SetCookie(w, dc)
-	return value, nil
+	return stringFlash, nil
 }
 
 func encode(src []byte) string {

@@ -1,0 +1,32 @@
+{{ define "title" }} Upload Files {{ end }}
+{{ define "content" }}
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        <form method="post" action="/upload" enctype="multipart/form-data">
+            <div class="wrapper">
+                <div class="drop">
+                    <div class="cont">
+                        <i class="glyphicon glyphicon-cloud-upload"></i>
+                        <div class="tit">
+                            Drag your image
+                        </div>
+                        <div class="desc">
+                            OR
+                        </div>
+                        <div class="browse">
+                            click here to browse
+                        </div>
+                    </div>
+                    <input id="uploadImage" name="uploadImage" type="file" />
+                </div>
+            </div>
+
+            <img id="image-preview" class="img-responsive hidden" alt="upload-image" />
+            <div class="btn-group upload-btn-group">
+                <button type="submit" class="btn btn-upload hidden"><i class="glyphicon glyphicon-upload"></i> Upload</button>
+                <button type="button" class="btn btn-clear hidden"><i class="glyphicon glyphicon-remove"></i> Remove</button>
+            </div>
+        </form>
+    </div>
+</div>
+{{ end }}
