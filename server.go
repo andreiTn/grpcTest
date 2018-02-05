@@ -32,7 +32,7 @@ func main() {
 
 	http.HandleFunc("/", controllers.HomePage)
 	http.HandleFunc("/upload-file", controllers.UploadPage)
-	http.HandleFunc("/upload", controllers.UploadHandler)
+	http.HandleFunc("/upload", controllers.Upload)
 	http.HandleFunc("/view", controllers.ViewPage)
 
 	server.ListenAndServe()

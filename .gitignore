@@ -1,8 +1,6 @@
 node_modules/
-web/tmpimg/
-web/img/
-web/destImgs/
-.idea/
+tmp/
+.idea/*
 .DS_Store
 .DS_Store?
 ._*
@@ -10,3 +8,4 @@ web/destImgs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+.bak

@@ -28,12 +28,10 @@ func NewError(text string) error {
 
 // create a buffer pool
 func init() {
-	bufpool = bpool.NewBufferPool(100  * 10024)
-	log.Println("buffer allocation successful")
+	bufpool = bpool.NewBufferPool(100  * 1024)
 }
 
 func LoadTemplates(config config.Config) (err error) {
-	fmt.Println("Load template....")
 	if templates == nil {
 		templates = make(map[string]*template.Template)
 	}
@@ -47,7 +45,6 @@ func LoadTemplates(config config.Config) (err error) {
 	if err != nil {
 		return err
 	}
-	fmt.Println("TC: ", config)
 	mainTemplate := template.New("main")
 	mainTemplate, err = mainTemplate.Parse(mainTmpl)
 
@@ -57,17 +54,14 @@ func LoadTemplates(config config.Config) (err error) {
 
 	for _, file := range includeFiles {
 		fileName := filepath.Base(file)
-		fmt.Println("NAME: ", fileName)
 		files := append(layoutFiles, file)
-		fmt.Println(fileName)
+
 		templates[fileName], err = mainTemplate.Clone()
 		if err != nil {
 			return err
 		}
 		templates[fileName] = template.Must(templates[fileName].ParseFiles(files...))
 	}
-
-	log.Println("templates loading successful")
 	return nil
 
 }
